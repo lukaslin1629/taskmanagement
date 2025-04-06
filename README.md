@@ -1,4 +1,4 @@
-# Task Managemenr
+# Task Management
 This is a **To-do list** application written in **C++**. It allows users to manage their tasks, including features to **add**, **delete**, **view**, and **save** tasks between sessions.
 
 ## Features
