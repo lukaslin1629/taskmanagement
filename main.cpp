@@ -5,24 +5,6 @@
 
 #include "task_manager.hpp"
 
-Task GetUserInput() {
-    std::string description, location, duedate, category;
-    std::cin.ignore();
-    std::cout << "Description:";
-    std::getline(std::cin, description);
-
-    std::cout << "Location:";
-    std::getline(std::cin, location);
-
-    std::cout << "Due date:";
-    std::getline(std::cin, duedate);
-
-    std::cout << "Category:";
-    std::getline(std::cin, category);
-
-    return Task(description, location, duedate, category);
-}
-
 int main() { 
     std::fstream myFile;
 
@@ -57,7 +39,8 @@ int main() {
         std::cout << "\nMenu:\n";
         std::cout << "1. Add new task\n";
         std::cout << "2. Delete task\n";
-        std::cout << "3. View tasks\n";
+        std::cout << "3. Edit task\n";
+        std::cout << "4. View tasks\n";
         std::cout << "Enter your choice: ";
         std::cin >> response;
         std::cout << std::endl;
@@ -84,15 +67,30 @@ int main() {
 
         // delete task
         else if (response == "2") {
-            Task task_to_delete = GetUserInput();
-            if (myTask.DeleteTask(task_to_delete))
+            std::cin.ignore();
+            std::cout << "Description:";
+            std::getline(std::cin, description);
+            if (myTask.DeleteTask(description)) {
                 std::cout << "Successfully deleted task!\n";
-            else
+            } else {
                 std::cout << "Task not found.\n";
+            }
+        }
+
+        // edit task
+        else if (response == "3") {
+            std::cin.ignore();
+            std::cout << "Description:";
+            std::getline(std::cin, description);
+            if (myTask.EditTask(description)) {
+                std::cout << "Successfully edited task!\n";
+            } else {
+                std::cout << "Task not found.\n";
+            }
         }
 
         // view tasks
-        else if (response == "3") {
+        else if (response == "4") {
             myTask.DisplayTask();
         }
         else {

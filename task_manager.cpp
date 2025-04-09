@@ -19,18 +19,65 @@ bool TaskManager::AddTask(Task& new_task) {
     return found;
 }
 
-bool TaskManager::DeleteTask(Task& task) {
+bool TaskManager::DeleteTask(std::string description) {
     bool found = false;
     for (auto it = manager_.begin(); it != manager_.end(); ++it) {
-        if (it->Description() == task.Description() &&
-            it->Location()    == task.Location()    &&
-            it->DueDate()     == task.DueDate()     &&
-            it->Category()    == task.Category()) {
+        if (it->Description() == description) {
             manager_.erase(it);
             return true;
         }
     }
     return found;
+}
+
+bool TaskManager::EditTask(std::string description) {
+    for (auto& task : manager_) {
+        if (task.Description() == description) {
+            int choice;
+            std::string changed = "";
+            
+            do {
+                std::cout << "\nEditing task: " << task.Description() << std::endl;
+                std::cout << "Select a field to edit:\n";
+                std::cout << "1. Description\n";
+                std::cout << "2. Location\n";
+                std::cout << "3. Due Date\n";
+                std::cout << "4. Category\n";
+                std::cout << "5. Done editing\n";
+                std::cout << "Enter your choice: ";
+                std::cin >> choice;
+                std::cin.ignore();
+
+                switch (choice) {
+                    case 1:
+                        std::cout << "Enter new description: ";
+                        std::getline(std::cin, changed);
+                        task.SetDescription(changed);
+                        break;
+                    case 2:
+                        std::cout << "Enter new location: ";
+                        std::getline(std::cin, changed);
+                        task.SetLocation(changed);
+                        break;
+                    case 3:
+                        std::cout << "Enter new due date: ";
+                        std::getline(std::cin, changed);
+                        task.SetDueDate(changed);
+                        break;
+                    case 4:
+                        std::cout << "Enter new category: ";
+                        std::getline(std::cin, changed);
+                        task.SetDescription(changed);
+                        break;
+                    default:
+                        std::cout << "Invalid choice. Please try again.\n";
+                        break;
+                }
+            } while (choice != 5);
+            return true;
+        }
+    }
+    return false;
 }
 
 void TaskManager::DisplayTask() const {
