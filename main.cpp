@@ -41,6 +41,7 @@ int main() {
         std::cout << "2. Delete task\n";
         std::cout << "3. Edit task\n";
         std::cout << "4. View tasks\n";
+        std::cout << "5. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> response;
         std::cout << std::endl;
@@ -92,6 +93,11 @@ int main() {
         // view tasks
         else if (response == "4") {
             myTask.DisplayTask();
+        }
+        else if (response == "5") {
+            std::cout << "All tasks are saved successfully!\nExit!\n";
+            user_cont = false;
+            break;
         }
         else {
             std::cout << "Invalid choice. Try again.\n";
