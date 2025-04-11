@@ -97,9 +97,12 @@ int main() {
             std::cout << "Invalid choice. Try again.\n";
         }
 
-        std::cout << "Continue? (Y/N): ";
+        std::cout << "\nContinue? (Y/N): ";
         std::cin >> response;
-        if (response == "N" || response == "n") user_cont = false;
+        if (response == "N" || response == "n") {
+            std::cout << "All tasks are saved successfully!\nExit!\n";
+            user_cont = false;
+        }
     }
 
     // export file

@@ -67,7 +67,7 @@ bool TaskManager::EditTask(std::string description) {
                     case 4:
                         std::cout << "Enter new category: ";
                         std::getline(std::cin, changed);
-                        task.SetDescription(changed);
+                        task.SetCategory(changed);
                         break;
                     default:
                         std::cout << "Invalid choice. Please try again.\n";
