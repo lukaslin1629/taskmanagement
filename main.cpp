@@ -5,7 +5,26 @@
 
 #include "task_manager.hpp"
 
-int main() { 
+int main() {
+    int status;
+    do {
+        status = system("python3 authenticate.py");
+
+        int exit_code = WEXITSTATUS(status);
+
+        if (exit_code == 0) {
+            std::cout << "Access granted. Welcome!\n";
+            break;
+        } else if (exit_code == 1) {
+            std::cout << "Authentication failed. Please try again.\n\n";
+        } else if (exit_code == 2) {
+            std::cout << "User registered.\n\n";
+        } else {
+            std::cout << "Unknown error.\n";
+            return 1;
+        }
+
+    } while (true);
     std::fstream myFile;
 
     // Read file
@@ -26,7 +45,6 @@ int main() {
         }
         myFile.close();
     }
-
     std::cout << "What would you like to do today?\n";
     bool user_cont = true;
     std::string response;
