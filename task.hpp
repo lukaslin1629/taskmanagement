@@ -6,23 +6,23 @@
 class Task {
     public:
         // Constructor
-        Task(std::string description, std::string location, std::string duedate, std::string category)
-            : description_(description), location_(location), duedate_(duedate), category_(category) {}
+        Task(std::string event, std::string location, std::string duedate, std::string category)
+            : event_(event), location_(location), duedate_(duedate), category_(category) {}
             
         // Accessor
-        std::string Description() const { return description_; }
+        std::string Event() const       { return event_;       }
         std::string Location() const    { return location_;    }
         std::string DueDate() const     { return duedate_;     }
         std::string Category() const    { return category_;    }
 
         // Mutator
-        void SetDescription(const std::string& description) { description_ = description; }
+        void SetEvent(const std::string& event)             { event_       = event;       }
         void SetLocation(const std::string& location)       { location_    = location;    }
         void SetDueDate(const std::string& duedate)         { duedate_     = duedate;     }
         void SetCategory(const std::string& category)       { category_    = category;    }
 
     private:
-        std::string description_;
+        std::string event_;
         std::string location_;
         std::string category_;
         std::string duedate_;

@@ -1,15 +1,15 @@
 0
-Task Description:See eye doctor
-Location:Anaheim
-Due date:4/6/2025
+Event:See eye doctor
+Location:Brea
+Due date:4/16/2025
 Category:Misc
 1
-Task Description:Game with another school
+Event:Game with another school
 Location:Fullerton
 Due date:4/10/2025
 Category:Sport
 2
-Task Description:CPSC362 Project 2
-Location:Fullerton
-Due date:4/17/2025
+Event:CPSC362 Presentation
+Location:Fulleton
+Due date:4/19/2025
 Category:Study

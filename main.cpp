@@ -29,17 +29,17 @@ int main() {
 
     // Read file
     myFile.open("myTodoList.txt", std::ios::in);
-    std::string line, description, location, duedate, category;
+    std::string line, event, location, duedate, category;
     TaskManager myTask;
 
     if (myFile.is_open()) {
         while (std::getline(myFile, line)) {
-            if (line.find("Task Description:") != std::string::npos) description = line.substr(line.find(":") + 1);
+            if (line.find("Task Event:")    != std::string::npos)    event       = line.substr(line.find(":") + 1);
             else if (line.find("Location:") != std::string::npos)    location    = line.substr(line.find(":") + 1);
             else if (line.find("Due date:") != std::string::npos)    duedate     = line.substr(line.find(":") + 1);
             else if (line.find("Category:") != std::string::npos) {
                 category = line.substr(line.find(":") + 1);
-                Task curr_task(description, location, duedate, category);
+                Task curr_task(event, location, duedate, category);
                 myTask.AddTask(curr_task);
             }
         }
@@ -67,8 +67,8 @@ int main() {
         // add task
         if (response == "1") {
             std::cin.ignore();
-            std::cout << "Description:";
-            std::getline(std::cin, description);
+            std::cout << "Event:";
+            std::getline(std::cin, event);
         
             std::cout << "Location:";
             std::getline(std::cin, location);
@@ -79,7 +79,7 @@ int main() {
             std::cout << "Categories:";
             std::getline(std::cin, category);
         
-            Task new_task = Task(description, location, duedate, category);
+            Task new_task = Task(event, location, duedate, category);
             bool add = myTask.AddTask(new_task);
             if (add) std::cout << "Successfully added new task!\n";
         }
@@ -87,9 +87,9 @@ int main() {
         // delete task
         else if (response == "2") {
             std::cin.ignore();
-            std::cout << "Description:";
-            std::getline(std::cin, description);
-            if (myTask.DeleteTask(description)) {
+            std::cout << "Event:";
+            std::getline(std::cin, event);
+            if (myTask.DeleteTask(event)) {
                 std::cout << "Successfully deleted task!\n";
             } else {
                 std::cout << "Task not found.\n";
@@ -99,9 +99,11 @@ int main() {
         // edit task
         else if (response == "3") {
             std::cin.ignore();
-            std::cout << "Description:";
-            std::getline(std::cin, description);
-            if (myTask.EditTask(description)) {
+            std::cout << "Event:";
+            std::getline(std::cin, event);
+            std::cout << "Due date:";
+            std::getline(std::cin, duedate);
+            if (myTask.EditTask(event, duedate)) {
                 std::cout << "Successfully edited task!\n";
             } else {
                 std::cout << "Task not found.\n";
@@ -134,7 +136,7 @@ int main() {
     if (myFile.is_open()) {
         for (size_t i = 0; i < myTask.manager_.size(); ++i) {
             myFile << std::to_string(i) << std::endl;
-            myFile << "Task Description:" << myTask.manager_[i].Description() << std::endl;
+            myFile << "Event:"            << myTask.manager_[i].Event() << std::endl;
             myFile << "Location:"         << myTask.manager_[i].Location()    << std::endl;
             myFile << "Due date:"         << myTask.manager_[i].DueDate()     << std::endl;
             myFile << "Category:"         << myTask.manager_[i].Category()    << std::endl;

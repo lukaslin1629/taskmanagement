@@ -8,7 +8,7 @@
 bool TaskManager::AddTask(Task& new_task) {
     bool found = true;
     for (auto& task : manager_) {
-        if (task.Description() == new_task.Description() &&
+        if (task.Event()       == new_task.Event()       &&
             task.Location()    == new_task.Location()    &&
             task.DueDate()     == new_task.DueDate()     &&
             task.Category()    == new_task.Category()) {
@@ -19,10 +19,10 @@ bool TaskManager::AddTask(Task& new_task) {
     return found;
 }
 
-bool TaskManager::DeleteTask(std::string description) {
+bool TaskManager::DeleteTask(std::string event) {
     bool found = false;
     for (auto it = manager_.begin(); it != manager_.end(); ++it) {
-        if (it->Description() == description) {
+        if (it->Event() == event) {
             manager_.erase(it);
             return true;
         }
@@ -30,16 +30,15 @@ bool TaskManager::DeleteTask(std::string description) {
     return found;
 }
 
-bool TaskManager::EditTask(std::string description) {
+bool TaskManager::EditTask(std::string event, std::string duedate) {
     for (auto& task : manager_) {
-        if (task.Description() == description) {
+        if (task.Event() == event && task.DueDate() == duedate) {
             int choice;
             std::string changed = "";
             
             do {
-                std::cout << "\nEditing task: " << task.Description() << std::endl;
                 std::cout << "Select a field to edit:\n";
-                std::cout << "1. Description\n";
+                std::cout << "1. Event\n";
                 std::cout << "2. Location\n";
                 std::cout << "3. Due Date\n";
                 std::cout << "4. Category\n";
@@ -50,9 +49,9 @@ bool TaskManager::EditTask(std::string description) {
 
                 switch (choice) {
                     case 1:
-                        std::cout << "Enter new description: ";
+                        std::cout << "Enter new event: ";
                         std::getline(std::cin, changed);
-                        task.SetDescription(changed);
+                        task.SetEvent(changed);
                         break;
                     case 2:
                         std::cout << "Enter new location: ";
@@ -83,14 +82,14 @@ bool TaskManager::EditTask(std::string description) {
 void TaskManager::DisplayTask() const {
     std::cout << std::left;
     std::cout << std::setw(5) << "ID"
-              << std::setw(25) << "Description"
+              << std::setw(25) << "Event"
               << std::setw(20) << "Location"
               << std::setw(20) << "Due date"
               << std::setw(15) << "Category" << std::endl;
     std::cout << std::string(78, '-') << std::endl;
     for (int i = 0; i < manager_.size(); ++i) {
         std::cout << std::setw(5) << i
-                  << std::setw(25) << manager_[i].Description()
+                  << std::setw(25) << manager_[i].Event()
                   << std::setw(20) << manager_[i].Location()
                   << std::setw(20) << manager_[i].DueDate()
                   << std::setw(15) << manager_[i].Category()
