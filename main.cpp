@@ -34,7 +34,7 @@ int main() {
 
     if (myFile.is_open()) {
         while (std::getline(myFile, line)) {
-            if (line.find("Task Event:")    != std::string::npos)    event       = line.substr(line.find(":") + 1);
+            if (line.find("Event:")    != std::string::npos)         event       = line.substr(line.find(":") + 1);
             else if (line.find("Location:") != std::string::npos)    location    = line.substr(line.find(":") + 1);
             else if (line.find("Due date:") != std::string::npos)    duedate     = line.substr(line.find(":") + 1);
             else if (line.find("Category:") != std::string::npos) {
@@ -136,7 +136,7 @@ int main() {
     if (myFile.is_open()) {
         for (size_t i = 0; i < myTask.manager_.size(); ++i) {
             myFile << std::to_string(i) << std::endl;
-            myFile << "Event:"            << myTask.manager_[i].Event() << std::endl;
+            myFile << "Event:"            << myTask.manager_[i].Event()       << std::endl;
             myFile << "Location:"         << myTask.manager_[i].Location()    << std::endl;
             myFile << "Due date:"         << myTask.manager_[i].DueDate()     << std::endl;
             myFile << "Category:"         << myTask.manager_[i].Category()    << std::endl;

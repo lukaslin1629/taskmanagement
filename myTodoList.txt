@@ -4,12 +4,12 @@ Location:Brea
 Due date:4/16/2025
 Category:Misc
 1
-Event:Game with another school
+Event:Basketball game
 Location:Fullerton
 Due date:4/10/2025
 Category:Sport
 2
-Event:CPSC362 Presentation
-Location:Fulleton
+Event:CPSC362 Project
+Location:Fullerton
 Due date:4/19/2025
 Category:Study
