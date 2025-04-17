@@ -19,10 +19,10 @@ bool TaskManager::AddTask(Task& new_task) {
     return found;
 }
 
-bool TaskManager::DeleteTask(std::string event) {
+bool TaskManager::DeleteTask(std::string event, std::string duedate) {
     bool found = false;
     for (auto it = manager_.begin(); it != manager_.end(); ++it) {
-        if (it->Event() == event) {
+        if (it->Event() == event && it->DueDate() == duedate) {
             manager_.erase(it);
             return true;
         }

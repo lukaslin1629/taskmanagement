@@ -89,7 +89,9 @@ int main() {
             std::cin.ignore();
             std::cout << "Event:";
             std::getline(std::cin, event);
-            if (myTask.DeleteTask(event)) {
+            std::cout << "Due date:";
+            std::getline(std::cin, duedate);
+            if (myTask.DeleteTask(event, duedate)) {
                 std::cout << "Successfully deleted task!\n";
             } else {
                 std::cout << "Task not found.\n";

@@ -11,7 +11,7 @@ class TaskManager {
         TaskManager() {}
         std::vector<Task> manager_;
         bool AddTask(Task& new_task);
-        bool DeleteTask(std::string event);
+        bool DeleteTask(std::string event, std::string duedate);
         bool EditTask(std::string event, std::string duedate);
         void DisplayTask() const;
 };
